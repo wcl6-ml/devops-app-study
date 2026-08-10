@@ -1,0 +1,17 @@
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "8786:22112"
+    expose:
+      - "8786"
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    environment:
+      - "API_URL=http://backend:22112"
+    ports:
+      - "8785:22111"
