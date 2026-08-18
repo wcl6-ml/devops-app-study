@@ -1,19 +1,24 @@
+import logging
+
+import uvicorn
 from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
-import uvicorn
-import logging
-from typing import List, Optional
 
-from .models import StudySession, StudySessionCreate, Stats
-from .storage import save_session, get_all_sessions, get_sessions_by_tag, get_statistics
 from .config import (
-    APP_NAME,
     API_HOST,
     API_PORT,
-    CORS_ALLOW_ORIGINS,
+    APP_NAME,
     CORS_ALLOW_CREDENTIALS,
-    CORS_ALLOW_METHODS,
     CORS_ALLOW_HEADERS,
+    CORS_ALLOW_METHODS,
+    CORS_ALLOW_ORIGINS,
+)
+from .models import Stats, StudySession, StudySessionCreate
+from .storage import (
+    get_all_sessions,
+    get_sessions_by_tag,
+    get_statistics,
+    save_session,
 )
 
 # Configure logging
@@ -59,14 +64,14 @@ async def create_session(session: StudySessionCreate):
     try:
         new_session = save_session(session)
         return new_session
-    except Exception as e:
-        logger.error(f"Error creating session: {str(e)}")
-        raise HTTPException(status_code=500, detail=f"Error creating session: {str(e)}")
+    except Exception as e:  # noqa: BLE001
+        logger.error(f"Error creating session: {e!s}")
+        raise HTTPException(status_code=500, detail=f"Error creating session: {e!s}")
 
 
-@app.get("/sessions", response_model=List[StudySession])
+@app.get("/sessions", response_model=list[StudySession])
 async def read_sessions(
-    tag: Optional[str] = Query(None, description="Filter sessions by tag"),
+    tag: str | None = Query(None, description="Filter sessions by tag"),
 ):
     """Get all study sessions, optionally filtered by tag"""
     try:
@@ -76,11 +81,9 @@ async def read_sessions(
         else:
             logger.info("Fetching all sessions")
             return get_all_sessions()
-    except Exception as e:
-        logger.error(f"Error fetching sessions: {str(e)}")
-        raise HTTPException(
-            status_code=500, detail=f"Error fetching sessions: {str(e)}"
-        )
+    except Exception as e:  # noqa: BLE001
+        logger.error(f"Error fetching sessions: {e!s}")
+        raise HTTPException(status_code=500, detail=f"Error fetching sessions: {e!s}")
 
 
 @app.get("/stats", response_model=Stats)
@@ -89,15 +92,9 @@ async def read_stats():
     logger.info("Fetching statistics")
     try:
         return get_statistics()
-    except Exception as e:
-        logger.error(f"Error fetching statistics: {str(e)}")
-        raise HTTPException(
-            status_code=500, detail=f"Error fetching statistics: {str(e)}"
-        )
-
-
-# Marker for CI pipeline
-# This comment is used to trigger the CI pipeline when changes are made to this file.
+    except Exception as e:  # noqa: BLE001
+        logger.error(f"Error fetching statistics: {e!s}")
+        raise HTTPException(status_code=500, detail=f"Error fetching statistics: {e!s}")
 
 
 def main():
