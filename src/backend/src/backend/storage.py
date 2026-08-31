@@ -2,7 +2,7 @@ import csv
 import logging
 import os
 import uuid
-from datetime import datetime
+from datetime import datetime, UTC
 
 from .config import DATA_DIR
 from .models import Stats, StudySession, StudySessionCreate
@@ -36,7 +36,7 @@ def save_session(session: StudySessionCreate) -> StudySession:
     # Create a complete StudySession with generated fields
     new_session = StudySession(
         id=str(uuid.uuid4()),
-        timestamp=datetime.now(tz=datetime.timezone.utc),
+        timestamp=datetime.now(UTC),
         minutes=session.minutes,
         tag=session.tag,
     )
