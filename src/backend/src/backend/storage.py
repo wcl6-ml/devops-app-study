@@ -2,7 +2,7 @@ import csv
 import logging
 import os
 import uuid
-from datetime import datetime, UTC
+from datetime import UTC, datetime
 
 from .config import DATA_DIR
 from .models import Stats, StudySession, StudySessionCreate
