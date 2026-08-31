@@ -63,7 +63,7 @@ def get_all_sessions() -> list[StudySession]:
     sessions = []
 
     with open(SESSIONS_FILE, "r", newline="") as f:
-        reader = csv.DictWriter(f, fieldnames=CSV_HEADERS)
+        reader = csv.DictReader(f, fieldnames=CSV_HEADERS)
         next(reader)  # Skip header row if using standard reader, or keep dict usage
         f.seek(0)
         dict_reader = csv.DictReader(f)
