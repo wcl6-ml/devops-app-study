@@ -1,7 +1,7 @@
 import csv
 import os
 import uuid
-from datetime import datetime
+from datetime import datetime, UTC
 
 import pytest
 
@@ -151,7 +151,7 @@ def test_create_and_read_sessions():
         writer.writerow(
             {
                 "id": str(uuid.uuid4()),
-                "timestamp": datetime.now().isoformat(),
+                "timestamp": datetime.now(UTC).isoformat(),
                 "minutes": 15,
                 "tag": "TestTag1",
             }
@@ -159,7 +159,7 @@ def test_create_and_read_sessions():
         writer.writerow(
             {
                 "id": str(uuid.uuid4()),
-                "timestamp": datetime.now().isoformat(),
+                "timestamp": datetime.now(UTC).isoformat(),
                 "minutes": 45,
                 "tag": "TestTag2",
             }
