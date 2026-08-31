@@ -178,7 +178,8 @@ async def test_error_handling_create_session(client: AsyncClient, monkeypatch):
 
     # Mock save_session to raise an exception
     def mock_save_session(*args, **kwargs):
-        raise Exception("Test error")
+        #        raise Exception("Test error")
+        raise ValueError("Invalid input")
 
     monkeypatch.setattr("backend.main.save_session", mock_save_session)
 
@@ -194,7 +195,8 @@ async def test_error_handling_read_sessions(client: AsyncClient, monkeypatch):
 
     # Mock get_all_sessions to raise an exception
     def mock_get_all_sessions(*args, **kwargs):
-        raise Exception("Test error")
+        #        raise Exception("Test error")
+        raise ValueError("Invalid input")
 
     monkeypatch.setattr("backend.main.get_all_sessions", mock_get_all_sessions)
 
@@ -209,7 +211,8 @@ async def test_error_handling_read_sessions_by_tag(client: AsyncClient, monkeypa
 
     # Mock get_sessions_by_tag to raise an exception
     def mock_get_sessions_by_tag(*args, **kwargs):
-        raise Exception("Test error")
+        #        raise Exception("Test error")
+        raise ValueError("Invalid input")
 
     monkeypatch.setattr("backend.main.get_sessions_by_tag", mock_get_sessions_by_tag)
 
@@ -224,7 +227,8 @@ async def test_error_handling_read_stats(client: AsyncClient, monkeypatch):
 
     # Mock get_statistics to raise an exception
     def mock_get_statistics(*args, **kwargs):
-        raise Exception("Test error")
+        #        raise Exception("Test error")
+        raise ValueError("Invalid input")
 
     monkeypatch.setattr("backend.main.get_statistics", mock_get_statistics)
 
