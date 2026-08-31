@@ -36,7 +36,7 @@ def save_session(session: StudySessionCreate) -> StudySession:
     # Create a complete StudySession with generated fields
     new_session = StudySession(
         id=str(uuid.uuid4()),
-        timestamp=datetime.now(tz=datetime.utc),
+        timestamp=datetime.now(tz=datetime.timezone.utc),
         minutes=session.minutes,
         tag=session.tag,
     )
