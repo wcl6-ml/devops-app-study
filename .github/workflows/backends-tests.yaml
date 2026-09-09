@@ -19,11 +19,17 @@ jobs:
               - '.github/workflows/backend-tests.yaml'
   build:
     name: Build
-    runs-on: ubuntu-24.04
+    needs: check_paths
+    if: ${{ needs.check_paths.outputs.should_run == 'true' }}
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./src/backend
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      - name: Build an image from Dockerfile
+      - name: Build an image 
         run: docker build -t backend:test .
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@v0.36.0
