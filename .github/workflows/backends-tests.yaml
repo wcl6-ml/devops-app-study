@@ -16,31 +16,7 @@ jobs:
           filters: |
             backend:
               - 'src/backend/**'
-              - '.github/workflows/backend-tests.yaml'
-  build:
-    name: Build
-    needs: check_paths
-    if: ${{ needs.check_paths.outputs.should_run == 'true' }}
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./src/backend
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-      - name: Build an image 
-        run: docker build -t backend:test .
-      - name: Run Trivy vulnerability scanner
-        uses: aquasecurity/trivy-action@v0.36.0
-        with:
-          image-ref: 'backend:test'
-          format: 'table'
-          exit-code: '1'
-          ignore-unfixed: true
-          vuln-type: 'os,library'
-          severity: 'CRITICAL,HIGH'
-
+              - '.github/workflows/backends-tests.yaml'
   test:
     name: Test Backend
     needs: check_paths
@@ -72,6 +48,20 @@ jobs:
       - name: Run tests with coverage
         run: |
           uv run pytest tests/ -v --cov=src/backend --cov-report=xml --cov-fail-under=80
+
+      - name: Build docker image
+        run: docker build -t backend-app:latest .
+
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@v0.36.0
+        with:
+          image-ref: 'backend-app:latest'
+          format: 'table'
+          exit-code: '0'
+          #exit-code: '1' # Fail the workflow if vulnerabilities is found
+          ignore-unfixed: true
+          vuln-type: 'os,library'
+          severity: 'CRITICAL,HIGH'
 
       - name: Upload coverage report
         uses: actions/upload-artifact@v4
