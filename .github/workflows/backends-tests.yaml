@@ -16,7 +16,7 @@ jobs:
           filters: |
             backend:
               - 'src/backend/**'
-              - '.github/workflows/backend-tests.yaml'
+              - '.github/workflows/backends-tests.yaml'
   test:
     name: Test Backend
     needs: check_paths
@@ -55,7 +55,7 @@ jobs:
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@v0.36.0
         with:
-          image-ref: 'backend:test'
+          image-ref: 'backend-app:latest'
           format: 'table'
           exit-code: '0'
           #exit-code: '1' # Fail the workflow if vulnerabilities is found
