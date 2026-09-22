@@ -3,7 +3,7 @@ on:
   pull_request
 jobs:
   check_paths:
-    runs_on: ubuntu-latest
+    runs-on: ubuntu-latest
     outputs:
       if_run: ${{ steps.filter.outputs.frontend }}
     steps:
