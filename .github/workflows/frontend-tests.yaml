@@ -7,14 +7,14 @@ jobs:
     outputs:
       if_run: ${{ steps.filter.outputs.frontend }}
     steps:
-    - uses: actions/checkout@v4
-    - uses: dorny/paths-filter@v3.0.2
-	  id: filter
-	  with:
-	    filters: |
-		  frontend:
-		    - 'src/frontend/**'
-		    - '.github/workflows/frontend-tests.yaml'
+      - uses: actions/checkout@v4
+      - uses: dorny/paths-filter@v3.0.2
+	      id: filter
+	      with:
+	        filters: |
+		        frontend:
+ 		          - 'src/frontend/**'
+		          - '.github/workflows/frontend-tests.yaml'
   test:
     name: Test Frontend
     needs: check_paths
