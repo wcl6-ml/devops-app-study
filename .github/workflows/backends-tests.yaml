@@ -16,7 +16,7 @@ jobs:
           filters: |
             backend:
               - 'src/backend/**'
-              - '.github/workflows/backends-tests.yaml'
+#              - '.github/workflows/backends-tests.yaml'
   test:
     name: Test Backend
     needs: check_paths
