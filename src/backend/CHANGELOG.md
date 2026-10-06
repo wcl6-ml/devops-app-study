@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.0](https://github.com/wcl6-ml/devops-app-study/compare/backend-v0.1.0...backend-v0.2.0) (2026-10-06)
+
+
+### Features
+
+* **backend:** added container image building and pushing ([#10](https://github.com/wcl6-ml/devops-app-study/issues/10)) ([c84d87f](https://github.com/wcl6-ml/devops-app-study/commit/c84d87f28e18b0aa5012135017175e5a3a3bfcc8))
+
 ## 0.1.0 (2026-10-06)
 
 
