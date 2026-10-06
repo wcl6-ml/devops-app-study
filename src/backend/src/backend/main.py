@@ -97,6 +97,9 @@ async def read_stats():
         raise HTTPException(status_code=500, detail=f"Error fetching statistics: {e!s}")
 
 
+# This comment for triggering CI pipeline
+
+
 def main():
     """Entry point for running the API server"""
     logger.info(f"Starting {APP_NAME} API")
