@@ -103,6 +103,9 @@ def add_session():
     return redirect(url_for("index"))
 
 
+# Add the comment to trigger image update and release-please
+
+
 @app.route("/health")
 def health():
     """Health check endpoint for monitoring"""
