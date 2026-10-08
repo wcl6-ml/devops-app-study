@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.0](https://github.com/wcl6-ml/devops-app-study/compare/frontend-v0.1.0...frontend-v0.2.0) (2026-10-08)
+
+
+### Features
+
+* **ci:** update frontend package name ([#16](https://github.com/wcl6-ml/devops-app-study/issues/16)) ([1dc1f89](https://github.com/wcl6-ml/devops-app-study/commit/1dc1f8972f8714bc21728e59d953bd6770bfee55))
+
 ## 0.1.0 (2026-10-08)
 
 
