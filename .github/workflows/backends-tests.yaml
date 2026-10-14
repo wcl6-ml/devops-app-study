@@ -87,3 +87,8 @@ jobs:
           recreate: true
           path: code-coverage-results.md
 
+  trigger_e2e:
+    name: Trigger E2E Tests
+    needs: test
+    if: success()
+    uses: ./.github/workflows/e2e-tests.yaml
