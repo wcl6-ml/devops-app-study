@@ -48,7 +48,7 @@ jobs:
           uv run pytest frontend-tests/ -v --cov=src/frontend --cov-report=xml --cov-fail-under=80
 
       - name: Build docker image
-        run: docker build -t backend-app:latest .
+        run: docker build -t frontend-app:latest .
 
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@v0.36.0
