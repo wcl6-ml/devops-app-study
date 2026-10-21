@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.1](https://github.com/wcl6-ml/devops-app-study/compare/backend-v0.2.0...backend-v0.2.1) (2026-10-21)
+
+
+### Bug Fixes
+
+* **backend:** trigger ci ([#21](https://github.com/wcl6-ml/devops-app-study/issues/21)) ([74e37fe](https://github.com/wcl6-ml/devops-app-study/commit/74e37fe7cb5d308ca29cf98e17abda9afb89f911))
+
 ## [0.2.0](https://github.com/wcl6-ml/devops-app-study/compare/backend-v0.1.0...backend-v0.2.0) (2026-10-06)
 
 
