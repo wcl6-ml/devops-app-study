@@ -1,6 +1,6 @@
 import logging
 import os
-from datetime import datetime
+from datetime import UTC, datetime
 from typing import Any
 
 import requests
@@ -54,18 +54,18 @@ def get_sessions() -> list[dict[str, Any]]:
         def safe_timestamp(session):
             dt = session.get("timestamp_obj")
             if not dt:
-                return datetime.min
-            # If the datetime has a timezone, make it naive for safe comparison
-            if hasattr(dt, "tzinfo") and dt.tzinfo is not None:
-                dt = dt.replace(tzinfo=None)
+                return datetime.min.replace(tzinfo=UTC)
+            # Normalise to timezone-aware UTC so naive and aware values compare safely
+            if dt.tzinfo is None:
+                dt = dt.replace(tzinfo=UTC)
             return dt
 
         # Sort sessions safely by the normalized timestamp, newest first
         sessions.sort(key=safe_timestamp, reverse=True)
 
         return sessions
-    except Exception as e:
-        # Catch-all for network errors, type errors, or key errors
+    except (requests.RequestException, ValueError, KeyError, TypeError) as e:
+        # Network errors, bad JSON / timestamps, or malformed session data
         logger.error(f"Error fetching sessions: {e!s}")
         return []
 
