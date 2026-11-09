@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.2](https://github.com/wcl6-ml/devops-app-study/compare/backend-v0.2.1...backend-v0.2.2) (2026-11-09)
+
+
+### Bug Fixes
+
+* **backend:** wire gitops trigger correctly ([#33](https://github.com/wcl6-ml/devops-app-study/issues/33)) ([5a7d136](https://github.com/wcl6-ml/devops-app-study/commit/5a7d13660c14d13a1bf1e4b21122a3fa56a8229f))
+
 ## [0.2.1](https://github.com/wcl6-ml/devops-app-study/compare/backend-v0.2.0...backend-v0.2.1) (2026-10-21)
 
 
