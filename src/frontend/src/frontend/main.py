@@ -41,14 +41,31 @@ def get_sessions() -> list[dict[str, Any]]:
         response.raise_for_status()
         sessions = response.json()
 
+        # Handle case where backend returns None or non-list data
+        if not isinstance(sessions, list):
+            return []
+
         # Format timestamps for display and sort
-        sessions = [format_session(session) for session in sessions]
+        sessions = [
+            format_session(session) for session in sessions if isinstance(session, dict)
+        ]
 
         # Sort sessions by timestamp, newest first
-        sessions.sort(key=lambda x: x["timestamp_obj"], reverse=True)
+        def safe_timestamp(session):
+            dt = session.get("timestamp_obj")
+            if not dt:
+                return datetime.min
+            # If the datetime has a timezone, make it naive for safe comparison
+            if hasattr(dt, "tzinfo") and dt.tzinfo is not None:
+                dt = dt.replace(tzinfo=None)
+            return dt
+
+        # Sort sessions safely by the normalized timestamp, newest first
+        sessions.sort(key=safe_timestamp, reverse=True)
 
         return sessions
-    except requests.RequestException as e:
+    except Exception as e:
+        # Catch-all for network errors, type errors, or key errors
         logger.error(f"Error fetching sessions: {e!s}")
         return []
 

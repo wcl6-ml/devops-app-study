@@ -44,7 +44,7 @@ jobs:
             ${{ env.REGISTRY }}/${{ env.BACKEND_IMAGE_NAME }}:latest
     outputs:
       tag: ${{ steps.tag.outputs.TAG }}
-      app: backend
+      image: ${{ env.REGISTRY }}/${{ env.BACKEND_IMAGE_NAME }}
 
   build-and-push-frontend:
     name: Build and Push frontend
@@ -89,8 +89,8 @@ jobs:
     uses: ./.github/workflows/update-gitops.yml
     with:
       tag: ${{ needs.build-and-push-backend.outputs.tags || needs.build-and-push-frontend.outputs.tags }}
-      app: ${{ needs.build-and-push-backend.outputs.image || needs.build-and-push-frontend.outputs.image }}
+      image: ${{ needs.build-and-push-backend.outputs.image || needs.build-and-push-frontend.outputs.image }}
 
     secrets:
       GITOPS_DEPLOY_KEY: ${{ secrets.GITOPS_DEPLOY_KEY }}
-      DEVOPS_STUDY_APP: ${{ secrets.DEVOPS_STUDY_APP }}
+      DEVOPS_APPS_STUDY: ${{ secrets.DEVOPS_STUDY_APP }}
