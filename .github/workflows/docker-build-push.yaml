@@ -93,4 +93,4 @@ jobs:
 
     secrets:
       GITOPS_DEPLOY_KEY: ${{ secrets.GITOPS_DEPLOY_KEY }}
-      DEVOPS_APPS_STUDY: ${{ secrets.DEVOPS_STUDY_APP }}
+      DEVOPS_APPS_STUDY: ${{ secrets.DEVOPS_APPS_STUDY }}
