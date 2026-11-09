@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.1](https://github.com/wcl6-ml/devops-app-study/compare/frontend-v0.2.0...frontend-v0.2.1) (2026-11-09)
+
+
+### Bug Fixes
+
+* **test:** frontend image release test ([#27](https://github.com/wcl6-ml/devops-app-study/issues/27)) ([ffcae99](https://github.com/wcl6-ml/devops-app-study/commit/ffcae99f9abe46c1f065a9a840b128e809757612))
+
 ## [0.2.0](https://github.com/wcl6-ml/devops-app-study/compare/frontend-v0.1.0...frontend-v0.2.0) (2026-10-08)
 
 
