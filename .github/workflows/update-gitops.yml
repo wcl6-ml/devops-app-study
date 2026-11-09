@@ -15,7 +15,7 @@ on:
       GITOPS_DEPLOY_KEY:
         required: true
         description: "Deploy key for GitOps repository"
-      DEVOPS_STUDY_APP:
+      DEVOPS_APPS_STUDY:
         required: true
         description: "PAT GitOps repository"
 
@@ -69,7 +69,7 @@ jobs:
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v6
         with:
-          token: ${{ secrets.DEVOPS_STUDY_APP }} # Requires a PAT with repo scope for study-app-gitops
+          token: ${{ secrets.DEVOPS_APPS_STUDY }} # Requires a PAT with repo scope for study-app-gitops
           path: ./devops-app-study-gitops
           commit-message: Update dev deployments to tag ${{ inputs.tag }}
           committer: GitOps Bot <gitops-bot@github.com>
